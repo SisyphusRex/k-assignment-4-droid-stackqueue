@@ -1,7 +1,9 @@
 # Assignment 4 - Stacks, Queues, and Merge Sort. Project uses Assignment 3 solution.
 
 ## Author
-
+Walter Podewil
+CIS 226
+October 23, 2024
 
 
 ## Description
@@ -110,7 +112,7 @@ Be sure to think about what the time complexity for the bucket sort will be. Thi
 
 
 ## Known Problems, Issues, And/Or Errors in the Program
-
+10/23/24: No problems so far, just started
 
 
 <br/><br/><br/><br/><br/><br/><br/><br/>
