@@ -81,3 +81,22 @@ class AbstractLinkedList(ABC):
             self._tail.next = None
         self._size -= 1
         return data
+
+    def get_data_at_index(self, index):
+        """method to index into LL"""
+        if self.is_empty:
+            raise IndexError("Nothing in list.")
+        current_node = self._head
+        counter: int = 0
+        while counter != index:
+            current_node = current_node.next
+            counter += 1
+        return current_node.data
+
+
+class Stack(AbstractLinkedList):
+    """Stack Class"""
+
+
+class Queue(AbstractLinkedList):
+    """Queue Class"""
