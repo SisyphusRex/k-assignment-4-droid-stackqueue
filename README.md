@@ -109,7 +109,7 @@ Be sure to think about what the time complexity for the bucket sort will be. Thi
 
 ## Outside Resources Used
 * https://algs4.cs.princeton.edu/22mergesort/Merge.java.html
-*  rewrote java algorithm using my own variables
+  *  rewrote java algorithm using my own variables
 
 
 
