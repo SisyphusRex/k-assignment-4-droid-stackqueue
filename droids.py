@@ -312,7 +312,6 @@ class DroidCollection:
         """method to move objects from queue to collection"""
         for index in range(self._queue.length):
             self._collection[index] = self._queue.dequeue()
-            print(self._collection[index])
 
     def _add_droids_to_stack(self) -> None:
         """method to add droid to appropriate stack"""
@@ -328,8 +327,8 @@ class DroidCollection:
                 elif isinstance(droid, JanitorDroid):
                     self._janitor_stack.on_stack(droid)
 
-            else:
-                self._utility_stack.on_stack(droid)
+                else:
+                    self._utility_stack.on_stack(droid)
 
     def _move_from_stack_to_queue(self) -> None:
         """method to move from stack to queue"""

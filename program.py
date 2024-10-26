@@ -73,6 +73,7 @@ def main(*args):
         # sort by total cost
         if choice == 3:
             user_interface.total_cost_sort()
+
         # print droid list
         elif choice == 4:
             user_interface.print_droid_list()
