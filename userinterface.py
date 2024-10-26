@@ -225,6 +225,7 @@ class UserInterface:
         print_info(f"Does the droid have a {fieldname}? (y/n)")
         self._display_prompt()
         valid = False
+        value = None
         while not valid:
             user_input = input()
             if user_input.lower() == "y" or user_input.lower() == "n":

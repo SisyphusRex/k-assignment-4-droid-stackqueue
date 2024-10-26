@@ -70,7 +70,7 @@ def main(*args):
         # sort category
         if choice == 2:
             user_interface.category_sort()
-            print(droid_collection[0].total_cost)
+
         # sort by total cost
         if choice == 3:
             user_interface.total_cost_sort()

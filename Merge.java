@@ -3,6 +3,10 @@ package searchalgorithms.searchclasses;
 import java.util.Arrays;
 
 //copied from another project, which was originally copied from princeton's algorithm
+
+//While troubleshooting a problem with the sort, I changed all of the Comparable[] to Integer[]
+//For better functionality, I should change all occurences of Integer[] back to Comparable[]
+
 public class Merge {
     // Merge class for integers
 
