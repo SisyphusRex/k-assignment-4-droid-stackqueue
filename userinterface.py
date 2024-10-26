@@ -38,6 +38,10 @@ class UserInterface:
         """method to sort collection by category"""
         self.droid_collection.sort_by_category()
 
+    def total_cost_sort(self) -> None:
+        """method to sort by total cost"""
+        self.droid_collection.sort_by_total_cost()
+
     #########################
     # Pre-existing Methods  #
     #########################

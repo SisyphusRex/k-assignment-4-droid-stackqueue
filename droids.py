@@ -11,6 +11,7 @@ from abc import ABC, abstractmethod
 # First-party Imports
 from abstract_droid import AbstractDroid
 from datastructures import Stack, Queue
+from mergesort import MergeSort
 
 
 class Droid(AbstractDroid, ABC):
@@ -24,6 +25,18 @@ class Droid(AbstractDroid, ABC):
     # @property
     # def __class__(self) -> str:
     #     """class property"""
+
+    def __lt__(self, other) -> bool:
+        """x<y rich comparison"""
+        self.calculate_total_cost()
+        other.calculate_total_cost()
+        return self.total_cost < other.total_cost
+
+    def __gt__(self, other) -> bool:
+        """x>y rich comparison"""
+        self.calculate_total_cost()
+        other.calculate_total_cost()
+        return self.total_cost > other.total_cost
 
     ########################
     # Pre-Existing Methods #
@@ -298,6 +311,7 @@ class DroidCollection:
         self._astromech_stack = Stack()
         self._janitor_stack = Stack()
         self._queue = Queue()
+        self._merge_sort = MergeSort()
 
     #######################
     # Added Methods       #
@@ -349,6 +363,7 @@ class DroidCollection:
     def sort_by_total_cost(self) -> None:
         """sort collection by total cost"""
         # TODO: add method details
+        self._merge_sort.sort(self._collection)
 
     #########################
     # Pre-existing methods  #
