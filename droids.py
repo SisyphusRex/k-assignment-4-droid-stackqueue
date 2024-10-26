@@ -10,12 +10,24 @@ from abc import ABC, abstractmethod
 
 # First-party Imports
 from abstract_droid import AbstractDroid
+from datastructures import Stack, Queue
 
 
 class Droid(AbstractDroid, ABC):
     """Base Droid class. Also abstract as it does not make sense to allow it
     to be instantiated."""
 
+    ##########################
+    # Added Methods          #
+    ##########################
+    # @abstractmethod
+    # @property
+    # def __class__(self) -> str:
+    #     """class property"""
+
+    ########################
+    # Pre-Existing Methods #
+    ########################
     MODEL_COST = 0
     model_name = "Droid"
 
@@ -281,13 +293,59 @@ class DroidCollection:
     def __init__(self):
         """Constructor"""
         self._collection = []
+        self._protocol_stack = Stack()
+        self._utility_stack = Stack()
+        self._astromech_stack = Stack()
+        self._janitor_stack = Stack()
+        self._queue = Queue()
 
     #######################
     # Added Methods       #
     #######################
     def sort_by_category(self) -> None:
         """sort collection by category"""
-        # TODO: add method details
+        self._add_droids_to_stack()
+        self._move_from_stack_to_queue()
+        self._move_from_queue_to_collection()
+
+    def _move_from_queue_to_collection(self) -> None:
+        """method to move objects from queue to collection"""
+        for index in range(self._queue.length):
+            self._collection[index] = self._queue.dequeue()
+            print(self._collection[index])
+
+    def _add_droids_to_stack(self) -> None:
+        """method to add droid to appropriate stack"""
+        for droid in self._collection:
+            # loop over collection and find if instance
+            if isinstance(droid, ProtocolDroid):
+                self._protocol_stack.on_stack(droid)
+
+            elif isinstance(droid, UtilityDroid):
+                if isinstance(droid, AstromechDroid):
+                    self._astromech_stack.on_stack(droid)
+
+                elif isinstance(droid, JanitorDroid):
+                    self._janitor_stack.on_stack(droid)
+
+            else:
+                self._utility_stack.on_stack(droid)
+
+    def _move_from_stack_to_queue(self) -> None:
+        """method to move from stack to queue"""
+        # Order:
+        # 1. Astromech
+        # 2. Janitor
+        # 3. Utility
+        # 4. Protocol
+        for index in range(self._astromech_stack.length):
+            self._queue.enqueue(self._astromech_stack.off_stack())
+        for index in range(self._janitor_stack.length):
+            self._queue.enqueue(self._janitor_stack.off_stack())
+        for index in range(self._utility_stack.length):
+            self._queue.enqueue(self._utility_stack.off_stack())
+        for index in range(self._protocol_stack.length):
+            self._queue.enqueue(self._protocol_stack.off_stack())
 
     def sort_by_total_cost(self) -> None:
         """sort collection by total cost"""

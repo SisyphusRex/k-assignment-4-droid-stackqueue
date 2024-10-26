@@ -15,7 +15,6 @@ def main(*args):
     # Create a new instance of droid collection
     droid_collection = DroidCollection()
 
-    # TODO: Add hardcoded droids to collection using droid_collection.add_<droid_name> method
     def add_hardcoded_droids(collection: DroidCollection) -> None:
         """method to add hardcoded droids"""
         collection.add_protocol(Droid.Materials.CARBONITE, Droid.Colors.WHITE, 1)
@@ -51,6 +50,7 @@ def main(*args):
             False,
         )
 
+    # here we call the method to add the hardcoded droids to the collection
     add_hardcoded_droids(droid_collection)
 
     # Create a new instance of the user interface
@@ -69,10 +69,10 @@ def main(*args):
             user_interface.create_droid()
         # sort category
         if choice == 2:
-            droid_collection.sort_by_category()
+            user_interface.category_sort()
         # sort by total cost
         if choice == 3:
-            droid_collection.sort_by_total_cost()
+            user_interface.total_cost_sort()
         # print droid list
         elif choice == 4:
             user_interface.print_droid_list()

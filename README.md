@@ -110,7 +110,8 @@ Be sure to think about what the time complexity for the bucket sort will be. Thi
 ## Outside Resources Used
 * https://algs4.cs.princeton.edu/22mergesort/Merge.java.html
   *  rewrote java algorithm using my own variables
-
+* https://github.com/python/mypy/issues/3061
+  * how to use is instance with __class__ property
 
 
 ## Known Problems, Issues, And/Or Errors in the Program

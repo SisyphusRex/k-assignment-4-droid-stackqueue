@@ -34,6 +34,9 @@ class UserInterface:
     #########################
     # Added Methods         #
     #########################
+    def category_sort(self) -> None:
+        """method to sort collection by category"""
+        self.droid_collection.sort_by_category()
 
     #########################
     # Pre-existing Methods  #
