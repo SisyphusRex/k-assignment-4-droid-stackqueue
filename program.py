@@ -5,7 +5,7 @@
 # 6-4-2023
 
 # First-party imports
-from droids import DroidCollection
+from droids import DroidCollection, Droid
 from userinterface import UserInterface
 
 
@@ -15,6 +15,44 @@ def main(*args):
     # Create a new instance of droid collection
     droid_collection = DroidCollection()
 
+    # TODO: Add hardcoded droids to collection using droid_collection.add_<droid_name> method
+    def add_hardcoded_droids(collection: DroidCollection) -> None:
+        """method to add hardcoded droids"""
+        collection.add_protocol(Droid.Materials.CARBONITE, Droid.Colors.WHITE, 1)
+        collection.add_utility(
+            Droid.Materials.VANADIUM, Droid.Colors.RED, True, True, True
+        )
+        collection.add_astromech(
+            Droid.Materials.QUADRANIUM, Droid.Colors.GREEN, True, True, True, True, 1
+        )
+        collection.add_janitor(
+            Droid.Materials.TEARS_OF_A_JEDI,
+            Droid.Colors.BLUE,
+            True,
+            True,
+            True,
+            True,
+            True,
+        )
+        collection.add_protocol(Droid.Materials.TEARS_OF_A_JEDI, Droid.Colors.BLUE, 2)
+        collection.add_utility(
+            Droid.Materials.QUADRANIUM, Droid.Colors.GREEN, False, False, False
+        )
+        collection.add_astromech(
+            Droid.Materials.VANADIUM, Droid.Colors.RED, False, False, False, False, 0
+        )
+        collection.add_janitor(
+            Droid.Materials.CARBONITE,
+            Droid.Colors.WHITE,
+            False,
+            False,
+            False,
+            False,
+            False,
+        )
+
+    add_hardcoded_droids(droid_collection)
+
     # Create a new instance of the user interface
     user_interface = UserInterface(droid_collection)
 
@@ -22,18 +60,24 @@ def main(*args):
     user_interface.display_greeting()
 
     # Display main menu and get choice from user
-    choice = user_interface.get_menu_choice(3, user_interface.display_main_menu)
+    choice = user_interface.get_menu_choice(5, user_interface.display_main_menu)
 
-    # While the choice is not 3 (exit)
-    while choice < 3:
+    # While the choice is not 5 (exit)
+    while choice < 5:
         # If 1, create droid
         if choice == 1:
             user_interface.create_droid()
-        # Else if 2, print list
-        elif choice == 2:
+        # sort category
+        if choice == 2:
+            droid_collection.sort_by_category()
+        # sort by total cost
+        if choice == 3:
+            droid_collection.sort_by_total_cost()
+        # print droid list
+        elif choice == 4:
             user_interface.print_droid_list()
         # Re-prompt for input
-        choice = user_interface.get_menu_choice(3, user_interface.display_main_menu)
+        choice = user_interface.get_menu_choice(5, user_interface.display_main_menu)
 
     # Display exiting program message.
     user_interface.display_exit_message()

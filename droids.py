@@ -60,7 +60,9 @@ class Droid(AbstractDroid, ABC):
     @abstractmethod
     def calculate_total_cost(self):
         """Calculate the total cost and store it in the total_cost attribute"""
-        self.total_cost = self.MODEL_COST + self._get_material_cost() + self._get_color_cost()
+        self.total_cost = (
+            self.MODEL_COST + self._get_material_cost() + self._get_color_cost()
+        )
 
     @abstractmethod
     def _droid_info_str(self):
@@ -137,7 +139,9 @@ class UtilityDroid(Droid):
     COST_PER_OPTION = 35.00
     model_name = "Utility"
 
-    def __init__(self, material, color, has_toolbox, has_computer_connection, has_scanner):
+    def __init__(
+        self, material, color, has_toolbox, has_computer_connection, has_scanner
+    ):
         """Constructor"""
         super().__init__(material, color)
 
@@ -190,7 +194,9 @@ class JanitorDroid(UtilityDroid):
         has_vacuum,
     ):
         """Constructor"""
-        super().__init__(material, color, has_toolbox, has_computer_connection, has_scanner)
+        super().__init__(
+            material, color, has_toolbox, has_computer_connection, has_scanner
+        )
 
         # Set the option bools
         self._has_broom = has_broom
@@ -234,7 +240,9 @@ class AstromechDroid(UtilityDroid):
         number_of_ships,
     ):
         """Constructor"""
-        super().__init__(material, color, has_toolbox, has_computer_connection, has_scanner)
+        super().__init__(
+            material, color, has_toolbox, has_computer_connection, has_scanner
+        )
 
         # Set the option bools
         self._has_navigation = has_navigation
@@ -274,6 +282,21 @@ class DroidCollection:
         """Constructor"""
         self._collection = []
 
+    #######################
+    # Added Methods       #
+    #######################
+    def sort_by_category(self) -> None:
+        """sort collection by category"""
+        # TODO: add method details
+
+    def sort_by_total_cost(self) -> None:
+        """sort collection by total cost"""
+        # TODO: add method details
+
+    #########################
+    # Pre-existing methods  #
+    #########################
+
     def add_protocol(self, material, color, number_of_languages):
         """Add protocol droid to internal collection"""
         self._collection.append(
@@ -286,7 +309,9 @@ class DroidCollection:
             UtilityDroid(material, color, toolbox, computer_connection, scanner),
         )
 
-    def add_janitor(self, material, color, toolbox, computer_connection, scanner, broom, vacuum):
+    def add_janitor(
+        self, material, color, toolbox, computer_connection, scanner, broom, vacuum
+    ):
         """Add Janitor droid to internal collection"""
         self._collection.append(
             JanitorDroid(

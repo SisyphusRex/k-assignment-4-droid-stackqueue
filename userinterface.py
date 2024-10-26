@@ -24,12 +24,20 @@ from droids import (
 class UserInterface:
     """Do I/O with the user"""
 
-    MAX_MENU_CHOICES = 3
+    # modified max choices
+    MAX_MENU_CHOICES = 5
 
     def __init__(self, droid_collection):
         """Constructor"""
         self.droid_collection = droid_collection
 
+    #########################
+    # Added Methods         #
+    #########################
+
+    #########################
+    # Pre-existing Methods  #
+    #########################
     def display_greeting(self):
         """Display the welcome greeting"""
         print()
@@ -39,8 +47,11 @@ class UserInterface:
         """Display the main menu"""
         print_info("What would you like to do?")
         print("1. Add a new droid to the system")
-        print("2. Print the list of droids out")
-        print("3. Exit the program")
+        # Added two choices to menu
+        print("2. Sort Droids by Category")
+        print("3. Sort Droids by Total Cost")
+        print("4. Print the list of droids out")
+        print("5. Exit the program")
         print()
 
     def display_exit_message(self):
@@ -118,6 +129,9 @@ class UserInterface:
             choice = self._get_int()
         return choice
 
+    #####################
+    # Protected Methods #
+    #####################
     def _display_model_selection_menu(self):
         """Display model selection menu"""
         print_info("What type of droid is it?")
@@ -236,7 +250,9 @@ class UserInterface:
 
                 valid = True
             except ValueError:
-                print_error("That is not a valid Integer. Please enter a valid Integer.")
+                print_error(
+                    "That is not a valid Integer. Please enter a valid Integer."
+                )
                 if message:
                     print_info(message)
                 self._display_prompt()
