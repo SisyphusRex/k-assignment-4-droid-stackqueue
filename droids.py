@@ -362,7 +362,7 @@ class DroidCollection:
 
     def sort_by_total_cost(self) -> None:
         """sort collection by total cost"""
-        # TODO: add method details
+
         self._merge_sort.sort(self._collection)
 
     #########################
