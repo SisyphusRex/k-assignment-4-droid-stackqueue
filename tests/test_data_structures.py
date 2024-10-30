@@ -1,13 +1,17 @@
 """data structures test module"""
-#Walter Podewil
-#CIS 226
-#October 28, 2024
 
-#System Imports
+# Walter Podewil
+# CIS 226
+# October 28, 2024
+
+# System Imports
 from unittest import TestCase
-#First Party Imports
+
+# First Party Imports
 from datastructures import Stack, Queue
-#Third Party Imports
+
+# Third Party Imports
+import pytest
 
 
 class StackTest(TestCase):
@@ -21,82 +25,94 @@ class StackTest(TestCase):
 
     def test_is_empty_when_empty(self):
         """method to test is empty"""
-        #Arrange
+        # Arrange
 
-        #Act
+        # Act
 
-        #Assert
+        # Assert
         self.assertTrue(self.my_stack.is_empty)
 
     def test_is_empty_when_populated(self):
         """method to test is empty when not empty"""
-        #Arrange
-        self.my_stack.on_stack(self.thing)
+        # Arrange
+        self.my_stack.push(self.thing)
 
-        #Act
+        # Act
 
-        #Assert
+        # Assert
         self.assertFalse(self.my_stack.is_empty)
+
+    def test_check_if_empty_raises_error(self):
+        """method to test if check raises error"""
+        # Arrange
+
+        # Act
+
+        # Assert
+        with pytest.raises(IndexError):
+            self.my_stack.get_data_at_index(0)
 
     def test_get_data_from_index(self):
         """test get data from index method"""
-        #Arrange
-        self.my_stack.on_stack(self.thing)
-        self.my_stack.on_stack(self.second_thing)
+        # Arrange
+        self.my_stack.push(self.thing)
+        self.my_stack.push(self.second_thing)
 
-        #Act
+        # Act
         things_data = self.my_stack.get_data_at_index(0)
         second_things_data = self.my_stack.get_data_at_index(1)
 
-        #Assert
-        self.assertEqual(things_data, self.thing)
-        self.assertEqual(second_things_data, self.second_thing)
+        # Assert
+        self.assertEqual(self.thing, things_data)
+        self.assertEqual(self.second_thing, second_things_data)
 
-    def test_on_stack_to_empty_stack(self):
+    def test_push_to_empty_stack(self):
         """method to test on stack method adding one object to empty stack"""
-        #Arrange
+        # Arrange
 
-        #Act
-        self.my_stack.on_stack(self.thing)
+        # Act
+        self.my_stack.push(self.thing)
 
-        #Assert
-        self.assertEqual(self.my_stack.length, 1)
+        # Assert
+        self.assertEqual(1, self.my_stack.length)
 
-    def test_on_stack_to_populated_stack(self):
+    def test_push_to_populated_stack(self):
         """method to test on stack to populated stack"""
-        #Arrange
-        self.my_stack.on_stack(self.thing)
+        # Arrange
+        self.my_stack.push(self.thing)
 
-        #Act
-        self.my_stack.on_stack(self.second_thing)
+        # Act
+        self.my_stack.push(self.second_thing)
 
-        #Assert
-        self.assertEqual(self.my_stack.get_data_at_index(1), self.second_thing)
+        # Assert
+        self.assertEqual(self.second_thing, self.my_stack.get_data_at_index(1))
 
-    def test_off_stack_one_object(self):
+    def test_pop_one_object(self):
         """method to test off stack method with one object in stack"""
-        #Arrange
-        self.my_stack.on_stack(self.thing)
-        #Act
-        data = self.my_stack.off_stack()
-        #Assert
+        # Arrange
+        self.my_stack.push(self.thing)
+        # Act
+        data = self.my_stack.pop()
+        # Assert
         self.assertEqual(self.my_stack.length, 0)
-        self.assertEqual(data, self.thing)
+        self.assertEqual(self.thing, data)
 
-    def test_off_stack_populated_stack(self):
+    def test_pop_from_populated_stack(self):
         """method to test if off stack removes from same side as on stack"""
-        #Arrange
-        self.my_stack.on_stack(self.thing)
-        self.my_stack.on_stack(self.second_thing)
+        # Arrange
+        self.my_stack.push(self.thing)
+        self.my_stack.push(self.second_thing)
 
-        #Act
-        data = self.my_stack.off_stack()
+        # Act
+        data = self.my_stack.pop()
 
-        #Assert
-        self.assertEqual(data, self.second_thing)
+        # Assert
+        self.assertEqual(self.second_thing, data)
+
 
 class QueueTest(TestCase):
     """class to test Queue"""
+
     def setUp(self):
         """set up method"""
         self.thing = 11
@@ -105,43 +121,43 @@ class QueueTest(TestCase):
 
     def test_enqueue_to_empty_queue(self):
         """method to test enqueue of adding one object to empty queue"""
-        #Arrange
+        # Arrange
 
-        #Act
+        # Act
         self.my_queue.enqueue(self.thing)
-        #Assert
-        self.assertEqual(self.my_queue.length, 1)
+        # Assert
+        self.assertEqual(1, self.my_queue.length)
 
     def test_enqueue_to_populated_queue(self):
         """method to test enqueue to populated queue, should add to back"""
 
-        #Arrange
+        # Arrange
         self.my_queue.enqueue(self.thing)
 
-        #Act
+        # Act
         self.my_queue.enqueue(self.second_thing)
 
-        #Assert
-        self.assertEqual(self.my_queue.get_data_at_index(1), self.second_thing)
+        # Assert
+        self.assertEqual(self.second_thing, self.my_queue.get_data_at_index(1))
 
     def test_dequeue_one_object(self):
         """method to test dequeu when one object in queue"""
-        #Arrange
+        # Arrange
         self.my_queue.enqueue(self.thing)
-        #Act
+        # Act
         data = self.my_queue.dequeue()
-        #Assert
+        # Assert
         self.assertEqual(self.my_queue.length, 0)
-        self.assertEqual(data, self.thing)
+        self.assertEqual(self.thing, data)
 
     def test_dequeue_from_populated_queue(self):
         """method to test dequeue from populated queue, should remove from front"""
-        #Arrange
+        # Arrange
         self.my_queue.enqueue(self.thing)
         self.my_queue.enqueue(self.second_thing)
 
-        #Act
+        # Act
         data = self.my_queue.dequeue()
 
-        #Assert
-        self.assertEqual(data, self.thing)
+        # Assert
+        self.assertEqual(self.thing, data)

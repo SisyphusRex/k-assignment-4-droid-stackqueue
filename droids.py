@@ -332,33 +332,28 @@ class DroidCollection:
         for droid in self._collection:
             # loop over collection and find if instance
             if isinstance(droid, ProtocolDroid):
-                self._protocol_stack.on_stack(droid)
+                self._protocol_stack.push(droid)
 
             elif isinstance(droid, UtilityDroid):
                 if isinstance(droid, AstromechDroid):
-                    self._astromech_stack.on_stack(droid)
+                    self._astromech_stack.push(droid)
 
                 elif isinstance(droid, JanitorDroid):
-                    self._janitor_stack.on_stack(droid)
+                    self._janitor_stack.push(droid)
 
                 else:
-                    self._utility_stack.on_stack(droid)
+                    self._utility_stack.push(droid)
 
     def _move_from_stack_to_queue(self) -> None:
         """method to move from stack to queue"""
-        # Order:
-        # 1. Astromech
-        # 2. Janitor
-        # 3. Utility
-        # 4. Protocol
         for index in range(self._astromech_stack.length):
-            self._queue.enqueue(self._astromech_stack.off_stack())
+            self._queue.enqueue(self._astromech_stack.pop())
         for index in range(self._janitor_stack.length):
-            self._queue.enqueue(self._janitor_stack.off_stack())
+            self._queue.enqueue(self._janitor_stack.pop())
         for index in range(self._utility_stack.length):
-            self._queue.enqueue(self._utility_stack.off_stack())
+            self._queue.enqueue(self._utility_stack.pop())
         for index in range(self._protocol_stack.length):
-            self._queue.enqueue(self._protocol_stack.off_stack())
+            self._queue.enqueue(self._protocol_stack.pop())
 
     def sort_by_total_cost(self) -> None:
         """sort collection by total cost"""

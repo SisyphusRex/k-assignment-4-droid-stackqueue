@@ -27,9 +27,33 @@ class AbstractLinkedList(ABC):
         self._tail = None
 
     @property
+    def length(self) -> int:
+        """length property"""
+        return self.__calculate_length()
+
+    def __calculate_length(self) -> int:
+        """method to calculate length"""
+        count: int = 0
+        current_node = self._head
+        if self.is_empty:
+            return count
+        if self._head == self._tail:
+            count += 1
+            return count
+        while current_node != self._tail:
+            count += 1
+            current_node = current_node.next
+        count += 1
+        return count
+
+    @property
     def is_empty(self) -> bool:
         """compares memory location of self._head"""
         return self._head is None
+
+    def _check_if_list_empty(self) -> None:
+        if self.is_empty:
+            raise IndexError("List is empty.")
 
     def _add_to_front(self, data) -> None:
         """method to add element to front of LL"""
@@ -54,8 +78,7 @@ class AbstractLinkedList(ABC):
 
     def _remove_from_front(self) -> Any:
         """remove element from front of LL"""
-        if self.is_empty:
-            raise IndexError("Nothing to remove.  List is Empty.")
+        self._check_if_list_empty()
         data = self._head.data
         self._head = self._head.next
         self._size -= 1
@@ -65,8 +88,7 @@ class AbstractLinkedList(ABC):
 
     def _remove_from_back(self) -> Any:
         """method to remove element from back of LL"""
-        if self.is_empty:
-            raise IndexError("Nothing to remove.  List is empty.")
+        self._check_if_list_empty()
 
         data = self._tail.data
 
@@ -84,8 +106,7 @@ class AbstractLinkedList(ABC):
 
     def get_data_at_index(self, index) -> Any:
         """method to index into LL"""
-        if self.is_empty:
-            raise IndexError("Nothing in list.")
+        self._check_if_list_empty()
         current_node = self._head
         counter: int = 0
         while counter != index:
@@ -93,36 +114,15 @@ class AbstractLinkedList(ABC):
             counter += 1
         return current_node.data
 
-    @property
-    def length(self) -> int:
-        """length property"""
-        return self.__calculate_length()
-
-    def __calculate_length(self) -> int:
-        """method to calculate length"""
-        count: int = 0
-        current_node = self._head
-        if self.is_empty:
-            return count
-        if self._head == self._tail:
-            count += 1
-            return count
-        while current_node != self._tail:
-            count += 1
-            current_node = current_node.next
-        # add one more to count for tail
-        count += 1
-        return count
-
 
 class Stack(AbstractLinkedList):
     """Stack Class"""
 
-    def on_stack(self, data) -> None:
+    def push(self, data) -> None:
         """method to add to stack"""
         self._add_to_back(data)
 
-    def off_stack(self) -> Any:
+    def pop(self) -> Any:
         """method to remove from stack"""
         return self._remove_from_back()
 

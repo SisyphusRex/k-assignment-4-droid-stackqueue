@@ -112,7 +112,8 @@ Be sure to think about what the time complexity for the bucket sort will be. Thi
   *  rewrote java algorithm using my own variables
 * https://github.com/python/mypy/issues/3061
   * how to use is instance with __class__ property
-
+* https://docs.pytest.org/en/7.1.x/how-to/assert.html
+  * use pytest to test for raised exception
 
 ## Known Problems, Issues, And/Or Errors in the Program
 10/23/24: No problems so far, just started

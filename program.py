@@ -15,43 +15,8 @@ def main(*args):
     # Create a new instance of droid collection
     droid_collection = DroidCollection()
 
-    def add_hardcoded_droids(collection: DroidCollection) -> None:
-        """method to add hardcoded droids"""
-        collection.add_protocol(Droid.Materials.CARBONITE, Droid.Colors.WHITE, 1)
-        collection.add_utility(
-            Droid.Materials.VANADIUM, Droid.Colors.RED, True, True, True
-        )
-        collection.add_astromech(
-            Droid.Materials.QUADRANIUM, Droid.Colors.GREEN, True, True, True, True, 1
-        )
-        collection.add_janitor(
-            Droid.Materials.TEARS_OF_A_JEDI,
-            Droid.Colors.BLUE,
-            True,
-            True,
-            True,
-            True,
-            True,
-        )
-        collection.add_protocol(Droid.Materials.TEARS_OF_A_JEDI, Droid.Colors.BLUE, 2)
-        collection.add_utility(
-            Droid.Materials.QUADRANIUM, Droid.Colors.GREEN, False, False, False
-        )
-        collection.add_astromech(
-            Droid.Materials.VANADIUM, Droid.Colors.RED, False, False, False, False, 0
-        )
-        collection.add_janitor(
-            Droid.Materials.CARBONITE,
-            Droid.Colors.WHITE,
-            False,
-            False,
-            False,
-            False,
-            False,
-        )
-
-    # here we call the method to add the hardcoded droids to the collection
-    add_hardcoded_droids(droid_collection)
+    # NOTE: If you want to add hardcoded droids for testing, uncomment the following line:
+    # add_hardcoded_droids(droid_collection)
 
     # Create a new instance of the user interface
     user_interface = UserInterface(droid_collection)
@@ -83,3 +48,37 @@ def main(*args):
 
     # Display exiting program message.
     user_interface.display_exit_message()
+
+
+def add_hardcoded_droids(collection: DroidCollection) -> None:
+    """method to add hardcoded droids"""
+    collection.add_protocol(Droid.Materials.CARBONITE, Droid.Colors.WHITE, 1)
+    collection.add_utility(Droid.Materials.VANADIUM, Droid.Colors.RED, True, True, True)
+    collection.add_astromech(
+        Droid.Materials.QUADRANIUM, Droid.Colors.GREEN, True, True, True, True, 1
+    )
+    collection.add_janitor(
+        Droid.Materials.TEARS_OF_A_JEDI,
+        Droid.Colors.BLUE,
+        True,
+        True,
+        True,
+        True,
+        True,
+    )
+    collection.add_protocol(Droid.Materials.TEARS_OF_A_JEDI, Droid.Colors.BLUE, 2)
+    collection.add_utility(
+        Droid.Materials.QUADRANIUM, Droid.Colors.GREEN, False, False, False
+    )
+    collection.add_astromech(
+        Droid.Materials.VANADIUM, Droid.Colors.RED, False, False, False, False, 0
+    )
+    collection.add_janitor(
+        Droid.Materials.CARBONITE,
+        Droid.Colors.WHITE,
+        False,
+        False,
+        False,
+        False,
+        False,
+    )
