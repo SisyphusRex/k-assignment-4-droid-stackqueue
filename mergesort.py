@@ -1,10 +1,6 @@
 """merge sort module"""
 
-# Walter Podewil
-# CIS 226
-# October 26, 2024
 
-# Thighs code was copied from David Barnes
 
 # System Imports
 
