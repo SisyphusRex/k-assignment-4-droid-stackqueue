@@ -1,8 +1,6 @@
 """droid collection test module"""
 
-# Walter Podewil
-# CIS 226
-# October 30, 2024
+
 
 # System Imports
 from unittest import TestCase
