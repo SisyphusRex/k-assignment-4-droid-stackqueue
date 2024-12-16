@@ -1,9 +1,7 @@
 # Assignment 4 - Stacks, Queues, and Merge Sort. Project uses Assignment 3 solution.
 
 ## Author
-Walter Podewil
-CIS 226
-October 23, 2024
+
 
 
 ## Description
