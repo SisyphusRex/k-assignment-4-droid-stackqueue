@@ -1,8 +1,6 @@
 """Console Color Helpers"""
 
-# David Barnes
-# CIS 226
-# 05-28-23
+
 
 # System imports
 import os
