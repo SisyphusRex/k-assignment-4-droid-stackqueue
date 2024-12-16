@@ -1,8 +1,6 @@
 """Droid classes"""
 
-# David Barnes
-# CIS 226
-# 6-4-2023
+
 
 # System Imports
 import os
